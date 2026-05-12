@@ -68,21 +68,23 @@ How many students play a musical instrument?
 
 ---
 
-## Part C — Polynomials (Polynomes) Basics (20 pts)
+## Part C — Algebraic Expressions Basics (20 pts)
 
-Let `P(x) = 3x² + 2x − 1` and `Q(x) = x² − 5x + 4`.
+**Question 11.** (3 pts) Among the following monomials, group those that are **like terms** (monômes semblables):
 
-**Question 11.** (3 pts) Give the **degree** and the **leading coefficient** of `P(x)`.
+`3x²` &nbsp;,&nbsp; `−2x` &nbsp;,&nbsp; `5x²` &nbsp;,&nbsp; `7` &nbsp;,&nbsp; `−4x` &nbsp;,&nbsp; `2x²` &nbsp;,&nbsp; `−1`
 
-**Question 12.** (4 pts) Compute `P(x) + Q(x)` and simplify.
+**Question 12.** (4 pts) Reduce the algebraic expression:
 
-**Question 13.** (4 pts) Compute `P(x) − Q(x)` and simplify.
+`A = 5x + 3 − 2x + 7 − x + 4`
 
-**Question 14.** (3 pts) Expand: `2x · (x + 3)`.
+**Question 13.** (4 pts) Given `E = 4x + 7` and `F = 3x − 2`, compute the **sum** `E + F`.
 
-**Question 15.** (3 pts) Expand: `(x + 4)(x − 2)`.
+**Question 14.** (3 pts) Expand the product: `3 · (2x + 5)`.
 
-**Question 16.** (3 pts) Evaluate `P(2)` where `P(x) = x² − 3x + 5`.
+**Question 15.** (3 pts) Expand the product: `(x + 3)(x + 2)`.
+
+**Question 16.** (3 pts) Evaluate the expression `E(x) = 2x² + 3x − 1` for `x = 2`.
 
 ---
 
@@ -133,17 +135,20 @@ Is the final price equal to **80 €**? Justify with a calculation.
 
 ### Part C
 
-**11.** Degree = **2**, leading coefficient = **3**.
+**11.** Like-term groups:
+   - In `x²`: `3x²`, `5x²`, `2x²`
+   - In `x`: `−2x`, `−4x`
+   - Constants: `7`, `−1`
 
-**12.** `P(x) + Q(x) = ` **`4x² − 3x + 3`**.
+**12.** Group like terms: `(5x − 2x − x) + (3 + 7 + 4) = ` **`2x + 14`**.
 
-**13.** `P(x) − Q(x) = ` **`2x² + 7x − 5`**.
+**13.** `E + F = (4x + 7) + (3x − 2) = (4x + 3x) + (7 − 2) = ` **`7x + 5`**.
 
-**14.** `2x · (x + 3) = ` **`2x² + 6x`**.
+**14.** `3 · (2x + 5) = 3·2x + 3·5 = ` **`6x + 15`**.
 
-**15.** `(x + 4)(x − 2) = ` **`x² + 2x − 8`**.
+**15.** `(x + 3)(x + 2) = x² + 2x + 3x + 6 = ` **`x² + 5x + 6`**.
 
-**16.** `P(2) = 4 − 6 + 5 = ` **3**.
+**16.** `E(2) = 2·(2)² + 3·(2) − 1 = 8 + 6 − 1 = ` **13**.
 
 ### Bonus
 

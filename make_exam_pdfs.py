@@ -1,4 +1,4 @@
-"""Build the 7th-grade math exam and its solution as two PDFs."""
+"""Genere le devoir de mathematiques de 7eme annee et son corrige en PDF (francais)."""
 
 from reportlab.lib import colors
 from reportlab.lib.enums import TA_LEFT
@@ -9,7 +9,6 @@ from reportlab.platypus import (
     PageBreak,
     Paragraph,
     SimpleDocTemplate,
-    Spacer,
     Table,
     TableStyle,
 )
@@ -72,41 +71,51 @@ def table_block(data, col_widths=None):
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# EXAM PDF
+# SUJET
 # ─────────────────────────────────────────────────────────────────────────────
 
 
 def build_exam():
     story = []
-    story.append(Paragraph("7th Grade Mathematics Exam", TITLE))
+    story.append(Paragraph("Devoir de Mathématiques — 7<super>ème</super> année", TITLE))
     story.append(
         Paragraph(
-            "Name: ________________________ &nbsp;&nbsp; Date: ____________ "
-            "<br/>Time: 60 minutes &nbsp;&nbsp;|&nbsp;&nbsp; Total: 60 points "
-            "<br/><i>Show all work. Calculators are not permitted.</i>",
+            "Nom : ________________________ &nbsp;&nbsp; Date : ____________ "
+            "<br/>Durée : 60 minutes &nbsp;&nbsp;|&nbsp;&nbsp; Total : 60 points "
+            "<br/><i>Toutes les étapes du calcul doivent être justifiées. "
+            "Calculatrice non autorisée.</i>",
             META,
         )
     )
 
-    # ── Part A
-    story.append(Paragraph("Part A — Proportionality &amp; Proportion Coefficient (20 pts)", H2))
+    # ── Partie A
+    story.append(Paragraph(
+        "Partie A — Proportionnalité &amp; coefficient de proportionnalité (20 pts)", H2,
+    ))
 
     story.append(Paragraph(
-        "<b>Q1.</b> (4 pts) The table below shows the distance traveled by a car "
-        "at constant speed.", Q,
+        "<b>Exercice 1.</b> (4 pts) Le tableau ci-dessous donne la distance "
+        "parcourue par une voiture à vitesse constante.", Q,
     ))
     story.append(table_block(
-        [["Time (h)", "2", "3", "5", "7"],
+        [["Temps (h)", "2", "3", "5", "7"],
          ["Distance (km)", "70", "105", "175", "245"]],
-        col_widths=[3.3 * cm, 2 * cm, 2 * cm, 2 * cm, 2 * cm],
+        col_widths=[3.5 * cm, 2 * cm, 2 * cm, 2 * cm, 2 * cm],
     ))
-    story.append(Paragraph("a) Is this a proportional relationship? Justify.", SUB))
-    story.append(Paragraph("b) Determine the proportion coefficient <i>k</i>.", SUB))
-    story.append(Paragraph("c) Write a formula relating distance <i>d</i> to time <i>t</i>.", SUB))
+    story.append(Paragraph(
+        "a) S'agit-il d'une situation de proportionnalité ? Justifier.", SUB,
+    ))
+    story.append(Paragraph(
+        "b) Déterminer le <b>coefficient de proportionnalité</b> <i>k</i>.", SUB,
+    ))
+    story.append(Paragraph(
+        "c) Donner une formule reliant la distance <i>d</i> au temps <i>t</i>.", SUB,
+    ))
 
     story.append(Paragraph(
-        "<b>Q2.</b> (4 pts) The table below is proportional with coefficient "
-        "<i>k</i> = 3. Complete the missing values:", Q,
+        "<b>Exercice 2.</b> (4 pts) Le tableau ci-dessous représente une "
+        "situation de proportionnalité de coefficient <i>k</i> = 3. Compléter "
+        "les cases manquantes :", Q,
     ))
     story.append(table_block(
         [["x", "2", "4", "?", "10"],
@@ -115,25 +124,26 @@ def build_exam():
     ))
 
     story.append(Paragraph(
-        "<b>Q3.</b> (4 pts) Solve for <i>x</i> using cross-multiplication: "
-        "&nbsp;&nbsp; 4 / 10 = x / 25.", Q,
+        "<b>Exercice 3.</b> (4 pts) Résoudre l'équation suivante en utilisant "
+        "le <b>produit en croix</b> : &nbsp;&nbsp; 4 / 10 = x / 25.", Q,
     ))
 
     story.append(Paragraph(
-        "<b>Q4.</b> (4 pts) A recipe uses <b>150 g of flour</b> for <b>4 cookies</b>. "
-        "How many grams of flour are needed for <b>18 cookies</b>?", Q,
+        "<b>Exercice 4.</b> (4 pts) Pour préparer <b>4 biscuits</b>, une "
+        "recette utilise <b>150 g de farine</b>. Quelle quantité de farine "
+        "faut-il pour <b>18 biscuits</b> ?", Q,
     ))
 
     story.append(Paragraph(
-        "<b>Q5.</b> (4 pts) For each table, say whether the relationship is "
-        "proportional. Justify.", Q,
+        "<b>Exercice 5.</b> (4 pts) Pour chacun des tableaux suivants, "
+        "indiquer s'il représente une situation de proportionnalité. Justifier.", Q,
     ))
-    story.append(Paragraph("Table a)", SUB))
+    story.append(Paragraph("Tableau a)", SUB))
     story.append(table_block(
         [["x", "1", "2", "3", "4"], ["y", "3", "6", "9", "12"]],
         col_widths=[2 * cm, 2 * cm, 2 * cm, 2 * cm, 2 * cm],
     ))
-    story.append(Paragraph("Table b)", SUB))
+    story.append(Paragraph("Tableau b)", SUB))
     story.append(table_block(
         [["x", "1", "2", "3", "4"], ["y", "3", "4", "5", "6"]],
         col_widths=[2 * cm, 2 * cm, 2 * cm, 2 * cm, 2 * cm],
@@ -141,169 +151,229 @@ def build_exam():
 
     story.append(PageBreak())
 
-    # ── Part B
-    story.append(Paragraph("Part B — Percentages (20 pts)", H2))
-    story.append(Paragraph("<b>Q6.</b> (3 pts) Calculate <b>25% of 80</b>.", Q))
+    # ── Partie B
+    story.append(Paragraph("Partie B — Pourcentages (20 pts)", H2))
     story.append(Paragraph(
-        "<b>Q7.</b> (4 pts) In a class of 60 students, 15 wear glasses. "
-        "What percentage of the class wears glasses?", Q,
+        "<b>Exercice 6.</b> (3 pts) Calculer <b>25 % de 80</b>.", Q,
     ))
     story.append(Paragraph(
-        "<b>Q8.</b> (5 pts) A bicycle costs <b>200 €</b>. The price increases "
-        "by <b>12%</b>. What is the new price?", Q,
+        "<b>Exercice 7.</b> (4 pts) Dans une classe de 60 élèves, 15 portent "
+        "des lunettes. Quel <b>pourcentage</b> de la classe porte des lunettes ?", Q,
     ))
     story.append(Paragraph(
-        "<b>Q9.</b> (4 pts) A shirt originally priced <b>50 €</b> is discounted "
-        "by <b>20%</b>. What is the final price?", Q,
+        "<b>Exercice 8.</b> (5 pts) Un vélo coûte <b>200 €</b>. Son prix "
+        "augmente de <b>12 %</b>. Quel est le nouveau prix ?", Q,
     ))
     story.append(Paragraph(
-        "<b>Q10.</b> (4 pts) Out of 250 students, 30% play a musical instrument. "
-        "How many students play one?", Q,
+        "<b>Exercice 9.</b> (4 pts) Une chemise coûte <b>50 €</b>. Elle est "
+        "soldée à <b>−20 %</b>. Quel est le prix final ?", Q,
+    ))
+    story.append(Paragraph(
+        "<b>Exercice 10.</b> (4 pts) Sur 250 élèves d'une école, <b>30 %</b> "
+        "pratiquent un instrument de musique. Combien d'élèves pratiquent "
+        "un instrument ?", Q,
     ))
 
-    # ── Part C
-    story.append(Paragraph("Part C — Polynomials Basics (20 pts)", H2))
+    # ── Partie C
+    story.append(Paragraph("Partie C — Expressions algébriques (20 pts)", H2))
+
     story.append(Paragraph(
-        "Let &nbsp; P(x) = 3x² + 2x − 1 &nbsp;&nbsp; and &nbsp;&nbsp; "
-        "Q(x) = x² − 5x + 4.", BOX,
+        "<b>Exercice 11.</b> (3 pts) Parmi les monômes suivants, regrouper "
+        "ceux qui sont <b>semblables</b> :", Q,
     ))
-    story.append(Paragraph("<b>Q11.</b> (3 pts) Give the degree and the leading coefficient of P(x).", Q))
-    story.append(Paragraph("<b>Q12.</b> (4 pts) Compute P(x) + Q(x) and simplify.", Q))
-    story.append(Paragraph("<b>Q13.</b> (4 pts) Compute P(x) − Q(x) and simplify.", Q))
-    story.append(Paragraph("<b>Q14.</b> (3 pts) Expand: 2x · (x + 3).", Q))
-    story.append(Paragraph("<b>Q15.</b> (3 pts) Expand: (x + 4)(x − 2).", Q))
-    story.append(Paragraph("<b>Q16.</b> (3 pts) Evaluate P(2) where P(x) = x² − 3x + 5.", Q))
+    story.append(Paragraph(
+        "3x² &nbsp;;&nbsp; −2x &nbsp;;&nbsp; 5x² &nbsp;;&nbsp; 7 "
+        "&nbsp;;&nbsp; −4x &nbsp;;&nbsp; 2x² &nbsp;;&nbsp; −1", BOX,
+    ))
+
+    story.append(Paragraph(
+        "<b>Exercice 12.</b> (4 pts) Réduire l'expression algébrique "
+        "suivante : <br/>&nbsp;&nbsp;&nbsp;&nbsp; "
+        "A = 5x + 3 − 2x + 7 − x + 4.", Q,
+    ))
+
+    story.append(Paragraph(
+        "<b>Exercice 13.</b> (4 pts) On donne &nbsp; E = 4x + 7 &nbsp; et "
+        "&nbsp; F = 3x − 2. Calculer la <b>somme</b> E + F.", Q,
+    ))
+
+    story.append(Paragraph(
+        "<b>Exercice 14.</b> (3 pts) Développer le produit : 3 × (2x + 5).", Q,
+    ))
+    story.append(Paragraph(
+        "<b>Exercice 15.</b> (3 pts) Développer le produit : (x + 3)(x + 2).", Q,
+    ))
+    story.append(Paragraph(
+        "<b>Exercice 16.</b> (3 pts) Calculer la valeur de l'expression "
+        "E(x) = 2x² + 3x − 1 &nbsp; pour &nbsp; x = 2.", Q,
+    ))
 
     # ── Bonus
     story.append(Paragraph("Bonus (+3 pts)", H2))
     story.append(Paragraph(
-        "A jacket costs <b>80 €</b>. It is first reduced by <b>25%</b>, then "
-        "the reduced price is increased by <b>25%</b>. Is the final price "
-        "equal to 80 €? Justify with a calculation.", Q,
+        "Un manteau coûte <b>80 €</b>. Il est d'abord soldé à <b>−25 %</b>, "
+        "puis le prix soldé est augmenté de <b>25 %</b>. Le prix final est-il "
+        "égal à <b>80 €</b> ? Justifier par un calcul.", Q,
     ))
 
     doc = SimpleDocTemplate(
         "exam_7th_grade_math.pdf", pagesize=A4,
         leftMargin=2 * cm, rightMargin=2 * cm,
         topMargin=2 * cm, bottomMargin=2 * cm,
-        title="7th Grade Math Exam",
+        title="Devoir de Maths 7eme",
     )
     doc.build(story)
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# SOLUTIONS PDF
+# CORRIGE
 # ─────────────────────────────────────────────────────────────────────────────
 
 
 def build_solutions():
     s = []
-    s.append(Paragraph("7th Grade Math Exam — Detailed Solutions", TITLE))
     s.append(Paragraph(
-        "All numerical results in this document were verified symbolically with "
-        "SymPy via the bundled <i>math</i> skill.", META,
+        "Devoir de Mathématiques — 7<super>ème</super> année · Corrigé détaillé",
+        TITLE,
+    ))
+    s.append(Paragraph(
+        "Tous les résultats numériques ci-dessous ont été vérifiés "
+        "symboliquement avec SymPy via la compétence <i>math</i> fournie.",
+        META,
     ))
 
-    s.append(Paragraph("Part A — Proportionality &amp; Proportion Coefficient", H2))
-
-    s.append(Paragraph("<b>Q1.</b>", Q))
     s.append(Paragraph(
-        "a) Compute every ratio distance / time:&nbsp;&nbsp; 70/2 = 35, "
-        "105/3 = 35, 175/5 = 35, 245/7 = 35. All equal → proportional.", SUB,
+        "Partie A — Proportionnalité &amp; coefficient de proportionnalité", H2,
     ))
-    s.append(Paragraph("b) Proportion coefficient <b>k = 35</b> (km/h).", SUB))
-    s.append(Paragraph("c) Formula: <b>d = 35 · t</b>.", ANS))
 
-    s.append(Paragraph("<b>Q2.</b> With k = 3, so y = 3x.", Q))
+    s.append(Paragraph("<b>Exercice 1.</b>", Q))
     s.append(Paragraph(
-        "x = 4 → y = 12&nbsp;&nbsp;|&nbsp;&nbsp; y = 21 → x = 7"
-        "&nbsp;&nbsp;|&nbsp;&nbsp; x = 10 → y = 30.", SUB,
+        "a) On calcule chaque rapport distance / temps : 70/2 = 35, "
+        "105/3 = 35, 175/5 = 35, 245/7 = 35. Tous égaux → "
+        "<b>il y a proportionnalité</b>.", SUB,
+    ))
+    s.append(Paragraph(
+        "b) Coefficient de proportionnalité <b>k = 35</b> (km/h).", SUB,
+    ))
+    s.append(Paragraph("c) Formule : <b>d = 35 × t</b>.", ANS))
+
+    s.append(Paragraph("<b>Exercice 2.</b> Avec k = 3, on a y = 3x.", Q))
+    s.append(Paragraph(
+        "x = 4 → y = 12 &nbsp;|&nbsp; y = 21 → x = 21 / 3 = 7 "
+        "&nbsp;|&nbsp; x = 10 → y = 30.", SUB,
     ))
     s.append(table_block(
         [["x", "2", "4", "7", "10"], ["y", "6", "12", "21", "30"]],
         col_widths=[2 * cm, 2 * cm, 2 * cm, 2 * cm, 2 * cm],
     ))
 
-    s.append(Paragraph("<b>Q3.</b> Cross-multiplying 4/10 = x/25:", Q))
     s.append(Paragraph(
-        "10 · x = 4 · 25 = 100 &nbsp;⇒&nbsp; <b>x = 10</b>.", ANS,
+        "<b>Exercice 3.</b> Produit en croix sur 4/10 = x/25 :", Q,
+    ))
+    s.append(Paragraph(
+        "10 × x = 4 × 25 = 100 &nbsp;⇒&nbsp; <b>x = 10</b>.", ANS,
     ))
 
-    s.append(Paragraph("<b>Q4.</b> Coefficient = 150 / 4 = 37.5 g per cookie.", Q))
     s.append(Paragraph(
-        "For 18 cookies: 18 · 37.5 = <b>675 g</b>. "
-        "(Cross-check: 18 · 150 / 4 = 2700 / 4 = 675.)", ANS,
+        "<b>Exercice 4.</b> Coefficient = 150 / 4 = 37,5 g par biscuit.", Q,
+    ))
+    s.append(Paragraph(
+        "Pour 18 biscuits : 18 × 37,5 = <b>675 g</b>. "
+        "(Vérification : 18 × 150 / 4 = 2700 / 4 = 675.)", ANS,
     ))
 
-    s.append(Paragraph("<b>Q5.</b>", Q))
+    s.append(Paragraph("<b>Exercice 5.</b>", Q))
     s.append(Paragraph(
-        "Table a) ratios 3/1 = 6/2 = 9/3 = 12/4 = 3 → <b>proportional</b>, k = 3.", SUB,
+        "Tableau a) rapports 3/1 = 6/2 = 9/3 = 12/4 = 3 → "
+        "<b>proportionnel</b>, k = 3.", SUB,
     ))
     s.append(Paragraph(
-        "Table b) ratios 3, 2, 5/3 ≈ 1.67, 1.5 → <b>not proportional</b>. "
-        "(In fact y = x + 2, an additive relation.)", SUB,
+        "Tableau b) rapports 3, 2, 5/3 ≈ 1,67, 1,5 → "
+        "<b>non proportionnel</b>. (En réalité y = x + 2, "
+        "relation additive et non multiplicative.)", SUB,
     ))
 
     s.append(PageBreak())
-    s.append(Paragraph("Part B — Percentages", H2))
-
-    s.append(Paragraph("<b>Q6.</b> 25% of 80 = (25/100) · 80 = <b>20</b>.", Q))
-    s.append(Paragraph(
-        "<b>Q7.</b> 15 / 60 = 1/4 = 25/100 = <b>25%</b>.", Q,
-    ))
-    s.append(Paragraph(
-        "<b>Q8.</b> Multiplier 1 + 12/100 = 1.12. "
-        "New price = 200 · 1.12 = <b>224 €</b>.", Q,
-    ))
-    s.append(Paragraph(
-        "<b>Q9.</b> Multiplier 1 − 20/100 = 0.80. "
-        "Final price = 50 · 0.80 = <b>40 €</b>.", Q,
-    ))
-    s.append(Paragraph(
-        "<b>Q10.</b> 30% of 250 = (30/100) · 250 = (3/10) · 250 = <b>75 students</b>.", Q,
-    ))
-
-    s.append(Paragraph("Part C — Polynomials", H2))
-    s.append(Paragraph("Given P(x) = 3x² + 2x − 1, &nbsp;&nbsp; Q(x) = x² − 5x + 4.", BOX))
+    s.append(Paragraph("Partie B — Pourcentages", H2))
 
     s.append(Paragraph(
-        "<b>Q11.</b> Degree = <b>2</b>; leading coefficient = <b>3</b>.", Q,
+        "<b>Exercice 6.</b> 25 % de 80 = (25 / 100) × 80 = <b>20</b>.", Q,
     ))
     s.append(Paragraph(
-        "<b>Q12.</b> Group like terms: (3x² + x²) + (2x − 5x) + (−1 + 4) "
-        "= <b>4x² − 3x + 3</b>.", Q,
+        "<b>Exercice 7.</b> 15 / 60 = 1/4 = 25/100 = <b>25 %</b>.", Q,
     ))
     s.append(Paragraph(
-        "<b>Q13.</b> Distribute the minus: 3x² + 2x − 1 − x² + 5x − 4 "
-        "= (3x² − x²) + (2x + 5x) + (−1 − 4) = <b>2x² + 7x − 5</b>.", Q,
+        "<b>Exercice 8.</b> Coefficient multiplicateur : 1 + 12/100 = 1,12. "
+        "Nouveau prix = 200 × 1,12 = <b>224 €</b>.", Q,
     ))
     s.append(Paragraph(
-        "<b>Q14.</b> 2x · (x + 3) = 2x · x + 2x · 3 = <b>2x² + 6x</b>.", Q,
+        "<b>Exercice 9.</b> Coefficient multiplicateur : 1 − 20/100 = 0,80. "
+        "Prix final = 50 × 0,80 = <b>40 €</b>.", Q,
     ))
     s.append(Paragraph(
-        "<b>Q15.</b> (x + 4)(x − 2) = x² − 2x + 4x − 8 = <b>x² + 2x − 8</b>.", Q,
+        "<b>Exercice 10.</b> 30 % de 250 = (30 / 100) × 250 = (3 / 10) × 250 "
+        "= <b>75 élèves</b>.", Q,
+    ))
+
+    s.append(Paragraph("Partie C — Expressions algébriques", H2))
+
+    s.append(Paragraph(
+        "<b>Exercice 11.</b> Regroupement des monômes semblables :", Q,
     ))
     s.append(Paragraph(
-        "<b>Q16.</b> P(2) = 2² − 3·2 + 5 = 4 − 6 + 5 = <b>3</b>.", Q,
+        "• Monômes en x² : <b>3x², 5x², 2x²</b><br/>"
+        "• Monômes en x : <b>−2x, −4x</b><br/>"
+        "• Termes constants : <b>7, −1</b>", SUB,
+    ))
+
+    s.append(Paragraph(
+        "<b>Exercice 12.</b> On regroupe les termes semblables :", Q,
+    ))
+    s.append(Paragraph(
+        "A = (5x − 2x − x) + (3 + 7 + 4) = 2x + 14. "
+        "<br/>Donc &nbsp; <b>A = 2x + 14</b>.", ANS,
+    ))
+
+    s.append(Paragraph(
+        "<b>Exercice 13.</b> E + F = (4x + 7) + (3x − 2) "
+        "= (4x + 3x) + (7 − 2) = <b>7x + 5</b>.", Q,
+    ))
+
+    s.append(Paragraph(
+        "<b>Exercice 14.</b> Distributivité simple : "
+        "3 × (2x + 5) = 3 × 2x + 3 × 5 = <b>6x + 15</b>.", Q,
+    ))
+
+    s.append(Paragraph(
+        "<b>Exercice 15.</b> Double distributivité : "
+        "(x + 3)(x + 2) = x × x + x × 2 + 3 × x + 3 × 2 "
+        "= x² + 2x + 3x + 6 = <b>x² + 5x + 6</b>.", Q,
+    ))
+
+    s.append(Paragraph(
+        "<b>Exercice 16.</b> Pour x = 2 : "
+        "E(2) = 2 × (2)² + 3 × 2 − 1 = 2 × 4 + 6 − 1 "
+        "= 8 + 6 − 1 = <b>13</b>.", Q,
     ))
 
     s.append(Paragraph("Bonus", H2))
     s.append(Paragraph(
-        "Step 1: 80 · (1 − 25/100) = 80 · 0.75 = <b>60 €</b>. "
-        "Step 2: 60 · (1 + 25/100) = 60 · 1.25 = <b>75 €</b>.", Q,
+        "Étape 1 : 80 × (1 − 25/100) = 80 × 0,75 = <b>60 €</b>. "
+        "Étape 2 : 60 × (1 + 25/100) = 60 × 1,25 = <b>75 €</b>.", Q,
     ))
     s.append(Paragraph(
-        "Final price = 75 €, <b>not</b> 80 €. The combined factor is "
-        "0.75 × 1.25 = 0.9375 &lt; 1 — a net 6.25% loss. Equal percentage "
-        "changes in opposite directions do not cancel because they are "
-        "applied to different bases.", BOX,
+        "Prix final = 75 €, <b>différent</b> de 80 €. "
+        "Le coefficient global est 0,75 × 1,25 = 0,9375 &lt; 1, soit une "
+        "<b>perte nette de 6,25 %</b>. Deux variations de même pourcentage "
+        "en sens opposés ne se compensent pas, car elles s'appliquent à "
+        "des bases différentes.", BOX,
     ))
 
     doc = SimpleDocTemplate(
         "exam_7th_grade_math_solutions.pdf", pagesize=A4,
         leftMargin=2 * cm, rightMargin=2 * cm,
         topMargin=2 * cm, bottomMargin=2 * cm,
-        title="7th Grade Math Exam — Solutions",
+        title="Devoir de Maths 7eme — Corrige",
     )
     doc.build(s)
 
@@ -311,4 +381,4 @@ def build_solutions():
 if __name__ == "__main__":
     build_exam()
     build_solutions()
-    print("Built: exam_7th_grade_math.pdf, exam_7th_grade_math_solutions.pdf")
+    print("Générés : exam_7th_grade_math.pdf, exam_7th_grade_math_solutions.pdf")
